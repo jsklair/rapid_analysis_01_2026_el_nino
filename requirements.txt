@@ -1,4 +1,4 @@
-﻿pandas
-matplotlib
-requests
-lxml
+pandas==2.2.3
+matplotlib==3.10.9
+requests==2.32.3
+lxml==6.1.3

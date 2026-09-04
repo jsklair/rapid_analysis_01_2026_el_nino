@@ -15,12 +15,12 @@ FORECAST_FILE = CLEANED_DIR / "roni_forecast_percentiles.csv"
 # specification stage. "Development year" is the calendar year used for
 # like-for-like seasonal comparison rather than necessarily the first year
 # in which the wider multi-season El Niño episode began.
-HISTORICAL_EVENTS = [
+EXPECTED_HISTORICAL_EVENTS = [
     ("1957–58", 1957),
     ("1965–66", 1965),
     ("1972–73", 1972),
     ("1982–83", 1982),
-    ("1986–88", 1986),
+    ("1986–87", 1986),
     ("1991–92", 1991),
     ("1997–98", 1997),
     ("2009–10", 2009),
@@ -40,6 +40,65 @@ FORECAST_CHART_STAGES = [
     "DJF", "JFM", "FMA", "MAM",
 ]
 
+
+
+def derive_major_events(history: pd.DataFrame) -> list[tuple[str, int]]:
+    """
+    Reconstruct the historical comparison cohort from the NOAA RONI series.
+
+    NOAA identifies historical warm episodes using at least five consecutive
+    overlapping seasons above +0.5?C. RA01 then applies its pre-agreed
+    "major" threshold of a peak RONI of at least +1.5?C.
+
+    The current 2026 event is excluded from this historical episode-selection
+    step because its published sequence is still incomplete.
+    """
+    ordered = (
+        history.loc[history["Year"] < 2026]
+        .sort_values(["Year", "season_order"])
+        .reset_index(drop=True)
+        .copy()
+    )
+
+    ordered["is_warm"] = ordered["roni"].gt(0.5) & ordered["roni"].notna()
+
+    # A change from warm to non-warm, or vice versa, starts a new run.
+    ordered["run_id"] = (
+        ordered["is_warm"]
+        .ne(ordered["is_warm"].shift())
+        .cumsum()
+    )
+
+    events = []
+
+    for _, run in ordered.loc[ordered["is_warm"]].groupby("run_id"):
+        if len(run) < 5:
+            continue
+
+        if run["roni"].max() < 1.5:
+            continue
+
+        start_year = int(run.iloc[0]["Year"])
+        end_year = int(run.iloc[-1]["Year"])
+
+        if start_year == end_year:
+            label = str(start_year)
+        else:
+            label = f"{start_year}\u2013{str(end_year)[-2:]}"
+
+        events.append((label, start_year))
+
+    # This check protects the frozen analytical design while ensuring the
+    # cohort itself is generated from source data rather than hard-coded.
+    if events != EXPECTED_HISTORICAL_EVENTS:
+        raise ValueError(
+            "Source-derived major-event cohort has changed.\n"
+            f"Expected: {EXPECTED_HISTORICAL_EVENTS}\n"
+            f"Derived:  {events}\n"
+            "Reassess the historical comparison before publication."
+        )
+
+    return events
 
 def get_roni(
     history: pd.DataFrame,
@@ -110,8 +169,10 @@ def build_event_comparison(history: pd.DataFrame) -> pd.DataFrame:
     """Create the like-for-like historical comparison table."""
     rows = []
 
+    historical_events = derive_major_events(history)
+
     for event_label, development_year in [
-        *HISTORICAL_EVENTS,
+        *historical_events,
         CURRENT_EVENT,
     ]:
         mam = get_roni(history, development_year, "MAM")
@@ -199,7 +260,7 @@ def create_trajectory_chart(
     """Chart historical major-event trajectories against observed 2026."""
     fig, ax = plt.subplots(figsize=(11, 7))
 
-    for event_label, development_year in HISTORICAL_EVENTS:
+    for event_label, development_year in derive_major_events(history):
         values = [
             get_roni(history, development_year, stage)
             for stage in TRAJECTORY_STAGES
