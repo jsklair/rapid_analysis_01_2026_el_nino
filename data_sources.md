@@ -1,20 +1,34 @@
-﻿# Data sources
+# Data sources
+
+**Analysis snapshot date:** 4 September 2026
 
 ## NOAA Climate Prediction Center
 
 ### Relative Oceanic Niño Index (RONI)
 
-Historical RONI observations and definitions:
-
 https://cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/
 
-Historical coverage begins in 1950. The analysis uses the current ERSSTv6 RONI series and does not mix RONI with historical ONI values.
+Primary source for the historical quantitative comparison.
+
+The analysis uses the current ERSSTv6 RONI history from 1950 onwards.
+
+The repository preserves the exact HTML snapshot used for the published analysis:
+
+`data/raw/noaa_roni_history_2026-09-04.html`
+
+NOAA states that recent real-time RONI estimates can be revised for up to two months after their initial publication.
 
 ### Official RONI outlook
 
 https://cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/outlook/
 
-Used for the current forecast trajectory and forecast uncertainty.
+Primary source for the forecast percentile distribution.
+
+Snapshot used:
+
+`data/raw/noaa_roni_outlook_2026-09-04.html`
+
+Observed and forecast values remain separate throughout the analysis.
 
 ### ENSO Diagnostics Discussion
 
@@ -22,19 +36,40 @@ https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodis
 
 Used for current NOAA interpretation and forecast context.
 
+The 13 August 2026 discussion reported a 69% probability that OND 2026 reaches at least +2.5°C RONI.
+
+### RONI strength categories
+
+NOAA's historical warm-episode criterion requires RONI to remain above +0.5°C for at least five consecutive overlapping seasons. RA01 then applies a peak threshold of +1.5°C to select the major-event comparison cohort.
+
+https://cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/strengths/
+
+Used to anchor the +1.5°C threshold applied in the historical comparison.
+
+"Major" is an analytical shorthand used in this repository rather than an official NOAA category.
+
 ## World Meteorological Organization
 
-Current El Niño context:
+### September 2026 El Niño update
 
 https://wmo.int/news/media-centre/el-nino-set-become-very-strong-raising-risks-of-extreme-weather-2027
 
-Supporting August 2026 update:
+### August 2026 El Niño/La Niña Update
 
 https://wmo.int/resources/publication-series/el-ninola-nina-updates/august-2026
 
-## Important comparability notes
+These sources provide current-event context rather than the historical quantitative series.
+
+## Comparability rules
 
 - Historical quantitative comparisons use NOAA RONI consistently.
-- Conventional Niño 3.4 or ONI values quoted elsewhere are not merged with RONI.
-- NOAA states that the newest RONI observations may be revised for up to two months after first publication.
-- Forecast values and probabilities are kept distinct from observed values.
+- Conventional Niño 3.4 or ONI values are not merged with RONI.
+- Forecast values are not presented as observations.
+- Regional impacts are not inferred directly from index strength.
+- The latest real-time RONI values are treated as revisable estimates.
+
+## Source provenance
+
+`data/raw/source_metadata.json` records the retrieval timestamp, source URLs, local snapshot filenames and SHA-256 checksums.
+
+This allows the exact source version behind the published results to be identified even if the live NOAA pages subsequently change.

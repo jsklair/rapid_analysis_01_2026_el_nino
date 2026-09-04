@@ -1,0 +1,13 @@
+{
+  "retrieved_at_utc": "2026-09-04T15:10:22.454368+00:00",
+  "history": {
+    "url": "https://cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/",
+    "snapshot_file": "noaa_roni_history_2026-09-04.html",
+    "sha256": "a01e3df387390792b3ca10e8a8ccfe0c718d95f57c60996af782bc3e4337040f"
+  },
+  "forecast": {
+    "url": "https://cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/outlook/",
+    "snapshot_file": "noaa_roni_outlook_2026-09-04.html",
+    "sha256": "831e00183ec55ef98c042a9ef711bb19245765d05c62ea887814301d5a88f744"
+  }
+}
