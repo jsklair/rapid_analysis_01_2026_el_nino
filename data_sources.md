@@ -1,4 +1,4 @@
-﻿# Data sources
+# Data sources
 
 **Analysis snapshot date:** 4 September 2026
 
@@ -39,6 +39,8 @@ Used for current NOAA interpretation and forecast context.
 The 13 August 2026 discussion reported a 69% probability that OND 2026 reaches at least +2.5°C RONI.
 
 ### RONI strength categories
+
+NOAA's historical warm-episode criterion requires RONI to remain above +0.5°C for at least five consecutive overlapping seasons. RA01 then applies a peak threshold of +1.5°C to select the major-event comparison cohort.
 
 https://cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/strengths/
 

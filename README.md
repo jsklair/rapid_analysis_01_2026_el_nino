@@ -1,4 +1,4 @@
-﻿# Rapid Analysis 01: The Developing 2026 El Niño in Historical Context
+# Rapid Analysis 01: The Developing 2026 El Niño in Historical Context
 
 **Published analysis date: 4 September 2026**
 
@@ -54,6 +54,8 @@ The median trajectory therefore moves above the historical observed maximum, but
 NOAA's 13 August 2026 ENSO Diagnostics Discussion estimated a **69% probability that OND 2026 reaches at least +2.5°C RONI**, which would exceed previous El Niño events in the RONI record since 1950.
 
 ## Data and definitions
+
+NOAA's historical warm-episode criterion requires RONI to remain above **+0.5°C for at least five consecutive overlapping seasons**. RA01 then applies its separate peak threshold of **+1.5°C** to select the major-event comparison cohort.
 
 The historical analysis uses NOAA Climate Prediction Center's **ERSSTv6 Relative Oceanic Niño Index**.
 

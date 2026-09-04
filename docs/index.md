@@ -1,4 +1,4 @@
-﻿---
+---
 title: Rapid Analysis 01
 ---
 
@@ -51,6 +51,8 @@ It does **not** follow that a particular country will experience a specific extr
 The latest RONI observations are also real-time estimates and may be revised.
 
 ## Method
+
+NOAA's historical warm-episode criterion requires RONI to remain above **+0.5°C for at least five consecutive overlapping seasons**. RA01 then applies its separate peak threshold of **+1.5°C** to select the major-event comparison cohort.
 
 Historical events were selected using a reproducible rule rather than by choosing famous El Niño years retrospectively.
 

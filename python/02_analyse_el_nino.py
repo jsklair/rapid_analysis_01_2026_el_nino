@@ -47,8 +47,8 @@ def derive_major_events(history: pd.DataFrame) -> list[tuple[str, int]]:
     Reconstruct the historical comparison cohort from the NOAA RONI series.
 
     NOAA identifies historical warm episodes using at least five consecutive
-    overlapping seasons above +0.5?C. RA01 then applies its pre-agreed
-    "major" threshold of a peak RONI of at least +1.5?C.
+    overlapping seasons above +0.5°C. RA01 then applies its pre-agreed
+    "major" threshold of a peak RONI of at least +1.5°C.
 
     The current 2026 event is excluded from this historical episode-selection
     step because its published sequence is still incomplete.
@@ -108,9 +108,8 @@ def get_roni(
     """
     Return a RONI value for a development-year trajectory.
 
-    MAM through NDJ belong to the development year. DJF, JFM, FMA and
-    the following MAM belong to the next calendar year when extending
-    the event into the following winter/spring.
+    MAM through NDJ belong to the development year. DJF, JFM and FMA
+    belong to the following calendar year when those seasons are requested.
     """
     following_year_seasons = {"DJF", "JFM", "FMA"}
 
@@ -184,7 +183,7 @@ def build_event_comparison(history: pd.DataFrame) -> pd.DataFrame:
                 "development_year": development_year,
                 "mam_roni": mam,
                 "jja_roni": jja,
-                "mam_to_jja_change": jja - mam,
+                "mam_to_jja_change": round(jja - mam, 1),
                 "is_2026": development_year == 2026,
             }
         )
