@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -7,9 +7,26 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CLEANED_DIR = PROJECT_ROOT / "data" / "cleaned"
 VISUALS_DIR = PROJECT_ROOT / "visuals"
+DOCS_ASSETS_DIR = PROJECT_ROOT / "docs" / "assets"
 
 HISTORY_FILE = CLEANED_DIR / "roni_history_tidy.csv"
 FORECAST_FILE = CLEANED_DIR / "roni_forecast_percentiles.csv"
+
+CHART_DPI = 200
+TITLE_FONTSIZE = 18
+ANNOTATION_FONTSIZE = 11
+VALUE_LABEL_FONTSIZE = 12
+
+plt.rcParams.update(
+    {
+        "font.size": 12,
+        "axes.labelsize": 13,
+        "xtick.labelsize": 12,
+        "ytick.labelsize": 12,
+        "legend.fontsize": 11,
+        "legend.title_fontsize": 11,
+    }
+)
 
 # These are the historical comparison episodes frozen during the
 # specification stage. "Development year" is the calendar year used for
@@ -253,11 +270,22 @@ def validate_analysis(
         )
 
 
+def save_chart(fig: plt.Figure, filename: str) -> None:
+    """Save identical chart outputs for the repository and GitHub Pages."""
+    for output_dir in (VISUALS_DIR, DOCS_ASSETS_DIR):
+        output_dir.mkdir(parents=True, exist_ok=True)
+        fig.savefig(
+            output_dir / filename,
+            dpi=CHART_DPI,
+            bbox_inches="tight",
+        )
+
+
 def create_trajectory_chart(
     history: pd.DataFrame,
 ) -> None:
     """Chart historical major-event trajectories against observed 2026."""
-    fig, ax = plt.subplots(figsize=(11, 7))
+    fig, ax = plt.subplots(figsize=(11, 7.5))
 
     for event_label, development_year in derive_major_events(history):
         values = [
@@ -296,9 +324,9 @@ def create_trajectory_chart(
     ax.axhline(0, linewidth=0.8, alpha=0.4)
 
     ax.set_title(
-        "The 2026 El Niño developed unusually quickly by mid-year",
+        "The 2026 El Niño developed unusually quickly\nby mid-year",
         loc="left",
-        fontsize=15,
+        fontsize=TITLE_FONTSIZE,
         fontweight="bold",
     )
     ax.set_ylabel("Relative Oceanic Niño Index (°C)")
@@ -307,19 +335,16 @@ def create_trajectory_chart(
 
     ax.legend(
         title="Development year",
-        ncol=2,
+        ncol=5,
         frameon=False,
-        bbox_to_anchor=(1.02, 1),
-        loc="upper left",
+        bbox_to_anchor=(0.5, -0.14),
+        loc="upper center",
+        columnspacing=1.2,
     )
 
-    fig.tight_layout()
+    fig.tight_layout(rect=(0, 0.1, 1, 1))
 
-    fig.savefig(
-        VISUALS_DIR / "01_historical_trajectories.png",
-        dpi=180,
-        bbox_inches="tight",
-    )
+    save_chart(fig, "01_historical_trajectories.png")
 
     plt.close(fig)
 
@@ -355,7 +380,7 @@ def create_jja_ranking_chart(
             bar.get_y() + bar.get_height() / 2,
             f"{value:+.1f}",
             va="center",
-            fontsize=10,
+            fontsize=VALUE_LABEL_FONTSIZE,
         )
 
     ax.axvline(
@@ -369,14 +394,15 @@ def create_jja_ranking_chart(
         1.51,
         -0.75,
         "Strong threshold",
-        fontsize=9,
+        fontsize=ANNOTATION_FONTSIZE,
         alpha=0.7,
     )
 
     ax.set_title(
-        "JJA 2026 ranks second among previous major El Niño development years",
+        "JJA 2026 ranks second among previous major El Niño\n"
+        "development years",
         loc="left",
-        fontsize=14,
+        fontsize=TITLE_FONTSIZE,
         fontweight="bold",
     )
     ax.set_xlabel("JJA Relative Oceanic Niño Index (°C)")
@@ -385,11 +411,7 @@ def create_jja_ranking_chart(
 
     fig.tight_layout()
 
-    fig.savefig(
-        VISUALS_DIR / "02_jja_same_stage_comparison.png",
-        dpi=180,
-        bbox_inches="tight",
-    )
+    save_chart(fig, "02_jja_same_stage_comparison.png")
 
     plt.close(fig)
 
@@ -404,7 +426,7 @@ def create_forecast_chart(
     Forecast uncertainty is shown using the published percentile ranges,
     rather than implying that the median forecast is a deterministic path.
     """
-    fig, ax = plt.subplots(figsize=(11, 6.5))
+    fig, ax = plt.subplots(figsize=(11, 7))
 
     x = list(range(len(FORECAST_CHART_STAGES)))
 
@@ -489,7 +511,7 @@ def create_forecast_chart(
         3.63,
         ax.get_ylim()[0] + 0.1,
         "Forecast",
-        fontsize=9,
+        fontsize=ANNOTATION_FONTSIZE,
         alpha=0.7,
     )
 
@@ -497,9 +519,9 @@ def create_forecast_chart(
     ax.set_xticklabels(FORECAST_CHART_STAGES)
 
     ax.set_title(
-        "NOAA forecasts a possible move beyond the historical RONI range",
+        "NOAA forecasts a possible move beyond the\nhistorical RONI range",
         loc="left",
-        fontsize=14,
+        fontsize=TITLE_FONTSIZE,
         fontweight="bold",
     )
     ax.set_ylabel("Relative Oceanic Niño Index (°C)")
@@ -513,17 +535,14 @@ def create_forecast_chart(
 
     fig.tight_layout()
 
-    fig.savefig(
-        VISUALS_DIR / "03_observed_vs_noaa_forecast.png",
-        dpi=180,
-        bbox_inches="tight",
-    )
+    save_chart(fig, "03_observed_vs_noaa_forecast.png")
 
     plt.close(fig)
 
 
 def main() -> None:
     VISUALS_DIR.mkdir(parents=True, exist_ok=True)
+    DOCS_ASSETS_DIR.mkdir(parents=True, exist_ok=True)
 
     history = pd.read_csv(HISTORY_FILE)
     forecast = pd.read_csv(FORECAST_FILE)
