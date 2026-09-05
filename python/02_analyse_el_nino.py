@@ -16,6 +16,9 @@ CHART_DPI = 200
 TITLE_FONTSIZE = 18
 ANNOTATION_FONTSIZE = 11
 VALUE_LABEL_FONTSIZE = 12
+DETAIL_AXIS_LABEL_FONTSIZE = 15
+DETAIL_TICK_FONTSIZE = 14
+DETAIL_TEXT_FONTSIZE = 13
 
 plt.rcParams.update(
     {
@@ -380,7 +383,7 @@ def create_jja_ranking_chart(
             bar.get_y() + bar.get_height() / 2,
             f"{value:+.1f}",
             va="center",
-            fontsize=VALUE_LABEL_FONTSIZE,
+            fontsize=DETAIL_TEXT_FONTSIZE,
         )
 
     ax.axvline(
@@ -394,7 +397,7 @@ def create_jja_ranking_chart(
         1.51,
         -0.75,
         "Strong threshold",
-        fontsize=ANNOTATION_FONTSIZE,
+        fontsize=DETAIL_TEXT_FONTSIZE,
         alpha=0.7,
     )
 
@@ -405,8 +408,12 @@ def create_jja_ranking_chart(
         fontsize=TITLE_FONTSIZE,
         fontweight="bold",
     )
-    ax.set_xlabel("JJA Relative Oceanic Niño Index (°C)")
+    ax.set_xlabel(
+        "JJA Relative Oceanic Niño Index (°C)",
+        fontsize=DETAIL_AXIS_LABEL_FONTSIZE,
+    )
     ax.set_ylabel("")
+    ax.tick_params(axis="both", labelsize=DETAIL_TICK_FONTSIZE)
     ax.grid(axis="x", alpha=0.2)
 
     fig.tight_layout()
@@ -511,7 +518,7 @@ def create_forecast_chart(
         3.63,
         ax.get_ylim()[0] + 0.1,
         "Forecast",
-        fontsize=ANNOTATION_FONTSIZE,
+        fontsize=DETAIL_TEXT_FONTSIZE,
         alpha=0.7,
     )
 
@@ -524,13 +531,21 @@ def create_forecast_chart(
         fontsize=TITLE_FONTSIZE,
         fontweight="bold",
     )
-    ax.set_ylabel("Relative Oceanic Niño Index (°C)")
-    ax.set_xlabel("Overlapping three-month season")
+    ax.set_ylabel(
+        "Relative Oceanic Niño Index (°C)",
+        fontsize=DETAIL_AXIS_LABEL_FONTSIZE,
+    )
+    ax.set_xlabel(
+        "Overlapping three-month season",
+        fontsize=DETAIL_AXIS_LABEL_FONTSIZE,
+    )
+    ax.tick_params(axis="both", labelsize=DETAIL_TICK_FONTSIZE)
     ax.grid(axis="y", alpha=0.2)
 
     ax.legend(
         frameon=False,
         loc="upper left",
+        fontsize=DETAIL_TEXT_FONTSIZE,
     )
 
     fig.tight_layout()
