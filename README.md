@@ -22,7 +22,7 @@ The comparison uses NOAA's current **Relative Oceanic Niño Index (RONI)** histo
 
 ## Key findings
 
-### 1. 2026 was already close to the top of the historical range by June–August (JJA)
+### 1. 2026 was already close to the top of the historical range by mid-year
 
 NOAA's June–August (**JJA**) 2026 RONI estimate is **+1.4°C**.
 
