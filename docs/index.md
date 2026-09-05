@@ -52,11 +52,13 @@ The latest RONI observations are also real-time estimates and may be revised.
 
 ## Method
 
-NOAA's historical warm-episode criterion requires RONI to remain above **+0.5°C for at least five consecutive overlapping seasons**. RA01 then applies its separate peak threshold of **+1.5°C** to select the major-event comparison cohort.
+Historical comparisons use NOAA Climate Prediction Center's **ERSSTv6 RONI**.
 
-Historical events were selected using a reproducible rule rather than by choosing famous El Niño years retrospectively.
+NOAA's historical warm-episode criterion requires RONI to remain above **+0.5°C for at least five consecutive overlapping seasons**. RA01 then retains episodes reaching a peak of at least **+1.5°C**.
 
-The comparison includes NOAA RONI El Niño episodes reaching a peak of at least **+1.5°C** and aligns their development years by overlapping three-month season.
+"Major" is shorthand used for this analysis rather than an official NOAA category.
+
+Historical events were selected using this reproducible rule rather than by choosing famous El Niño years retrospectively, and their development years are aligned by overlapping three-month season.
 
 Historical comparisons use RONI consistently. Conventional Niño 3.4 or ONI values quoted by other sources are not merged into the series.
 
