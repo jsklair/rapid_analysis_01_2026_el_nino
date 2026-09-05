@@ -4,7 +4,7 @@
 
 [View the published analysis](https://jsklair.github.io/rapid_analysis_01_2026_el_nino/)
 
-The 2026 El Niño was strengthening rapidly by mid-year, with NOAA and WMO outlooks pointing to the possibility of an unusually intense event later in 2026.
+The 2026 El Niño was strengthening rapidly by mid-year, with outlooks from NOAA (the US National Oceanic and Atmospheric Administration) and the World Meteorological Organization (WMO) pointing to the possibility of an unusually intense event later in 2026.
 
 This rapid analysis asks a narrower question:
 
@@ -12,11 +12,19 @@ This rapid analysis asks a narrower question:
 
 The comparison uses NOAA's current **Relative Oceanic Niño Index (RONI)** history rather than mixing different ENSO indices.
 
+## Terms used in this analysis
+
+- **El Niño** is the warm phase of the **El Niño–Southern Oscillation (ENSO)**, a recurring ocean–atmosphere pattern in the tropical Pacific.
+- **NOAA** is the US National Oceanic and Atmospheric Administration. Its Climate Prediction Center provides the historical observations and forecast data used here.
+- **Niño 3.4** is an area of the central equatorial Pacific commonly used to monitor ENSO.
+- **RONI** is NOAA's **Relative Oceanic Niño Index**: a three-month running measure of relative sea-surface-temperature anomalies in the Niño 3.4 region.
+- **Season codes** represent overlapping three-month periods, with each letter standing for a month. For example, **MAM** is March–April–May, **JJA** is June–July–August and **OND** is October–November–December.
+
 ## Key findings
 
-### 1. 2026 was already close to the top of the historical range by JJA
+### 1. 2026 was already close to the top of the historical range by mid-year
 
-NOAA's JJA 2026 RONI estimate is **+1.4°C**.
+NOAA's June–August (**JJA**) 2026 RONI estimate is **+1.4°C**.
 
 Among the nine previous El Niño episodes in the current NOAA RONI history that ultimately reached at least **+1.5°C**, only **1997–98** was higher at the same calendar stage, at +1.5°C.
 
@@ -26,7 +34,7 @@ That places 2026 **second out of ten** when the current event is included.
 
 ### 2. The spring-to-summer rise was unusually rapid
 
-RONI increased from **0.0°C in MAM to +1.4°C in JJA 2026**.
+RONI increased from **0.0°C in March–May (MAM) to +1.4°C in June–August (JJA) 2026**.
 
 That +1.4°C rise is larger than for any of the nine previous major events in the comparison. The next-fastest was 1997–98, which increased by +1.0°C over the same period.
 
@@ -53,15 +61,15 @@ The median trajectory therefore moves above the historical observed maximum, but
 
 ![Observed and forecast RONI](visuals/03_observed_vs_noaa_forecast.png)
 
-NOAA's 13 August 2026 ENSO Diagnostics Discussion estimated a **69% probability that OND 2026 reaches at least +2.5°C RONI**, which would exceed previous El Niño events in the RONI record since 1950.
+NOAA's 13 August 2026 ENSO Diagnostics Discussion estimated a **69% probability that October–December (OND) 2026 reaches at least +2.5°C RONI**, which would exceed previous El Niño events in the RONI record since 1950.
 
 ## Data and definitions
 
-Historical comparisons use NOAA Climate Prediction Center's **ERSSTv6 Relative Oceanic Niño Index (RONI)**.
+Historical comparisons use RONI calculated from NOAA's **Extended Reconstructed Sea Surface Temperature version 6 (ERSSTv6)** dataset.
 
 NOAA's historical warm-episode criterion requires RONI to remain above **+0.5°C for at least five consecutive overlapping seasons**. RA01 then retains episodes reaching a peak RONI of at least **+1.5°C**, corresponding to strong or very strong RONI intensity.
 
-RONI is a three-month running measure based on Niño 3.4 sea-surface-temperature anomalies after accounting for the mean tropical SST anomaly.
+RONI adjusts the Niño 3.4 sea-surface-temperature anomaly for the average tropical sea-surface-temperature anomaly, allowing the local Pacific signal to be considered relative to broader tropical warming.
 
 "Major" is shorthand used for this analysis rather than an official NOAA category.
 
@@ -87,7 +95,7 @@ Observed values, historical observations, NOAA forecasts and forecast uncertaint
 
 The analysis does not infer regional weather impacts directly from RONI strength.
 
-WMO material sometimes quotes conventional Niño 3.4 anomalies. Those figures are not merged into the historical RONI comparison.
+WMO material sometimes quotes conventional Niño 3.4 anomalies. NOAA also publishes the related **Oceanic Niño Index (ONI)**. Neither is merged into the historical RONI comparison, so the analysis does not mix different ENSO measures.
 
 ## Reproducibility
 
