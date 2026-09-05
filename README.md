@@ -98,8 +98,8 @@ The published analysis is based on the source snapshot retrieved on **4 Septembe
 The normal rerun sequence is:
 
 1. `python -m pip install -r requirements.txt`
-2. `python python_prepare_enso_data.py`
-3. `python python_analyse_el_nino.py`
+2. `python python/01_prepare_enso_data.py`
+3. `python python/02_analyse_el_nino.py`
 
 The preparation script downloads the current NOAA pages, so running it at a later date is a **refresh of the analysis**, not an exact replay of the 4 September inputs. The archived HTML snapshots and checksums in `data/raw` preserve the exact source state used for publication.
 
