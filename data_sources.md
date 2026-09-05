@@ -40,11 +40,11 @@ The 13 August 2026 discussion reported a 69% probability that OND 2026 reaches a
 
 ### RONI strength categories
 
-NOAA's historical warm-episode criterion requires RONI to remain above +0.5°C for at least five consecutive overlapping seasons. RA01 then applies a peak threshold of +1.5°C to select the major-event comparison cohort.
-
 https://cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/strengths/
 
-Used to anchor the +1.5°C threshold applied in the historical comparison.
+NOAA's historical warm-episode criterion requires RONI to remain above +0.5°C for at least five consecutive overlapping seasons.
+
+RA01 then applies a peak threshold of +1.5°C to select the major-event comparison cohort. The NOAA strength categories are used to anchor that threshold.
 
 "Major" is an analytical shorthand used in this repository rather than an official NOAA category.
 

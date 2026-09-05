@@ -2,6 +2,8 @@
 
 **Published analysis date: 4 September 2026**
 
+[View the published analysis](https://jsklair.github.io/rapid_analysis_01_2026_el_nino/)
+
 The 2026 El Niño was strengthening rapidly by mid-year, with NOAA and WMO outlooks pointing to the possibility of an unusually intense event later in 2026.
 
 This rapid analysis asks a narrower question:
@@ -55,13 +57,11 @@ NOAA's 13 August 2026 ENSO Diagnostics Discussion estimated a **69% probability 
 
 ## Data and definitions
 
-NOAA's historical warm-episode criterion requires RONI to remain above **+0.5°C for at least five consecutive overlapping seasons**. RA01 then applies its separate peak threshold of **+1.5°C** to select the major-event comparison cohort.
+Historical comparisons use NOAA Climate Prediction Center's **ERSSTv6 Relative Oceanic Niño Index (RONI)**.
 
-The historical analysis uses NOAA Climate Prediction Center's **ERSSTv6 Relative Oceanic Niño Index**.
+NOAA's historical warm-episode criterion requires RONI to remain above **+0.5°C for at least five consecutive overlapping seasons**. RA01 then retains episodes reaching a peak RONI of at least **+1.5°C**, corresponding to strong or very strong RONI intensity.
 
 RONI is a three-month running measure based on Niño 3.4 sea-surface-temperature anomalies after accounting for the mean tropical SST anomaly.
-
-For this analysis, a **major historical El Niño** is operationally defined as a NOAA RONI El Niño episode that reaches a peak RONI of at least **+1.5°C**, corresponding to strong or very strong RONI intensity.
 
 "Major" is shorthand used for this analysis rather than an official NOAA category.
 
@@ -95,11 +95,13 @@ The repository preserves dated copies of the NOAA historical and forecast pages 
 
 The published analysis is based on the source snapshot retrieved on **4 September 2026**.
 
-Rerun sequence:
+The normal rerun sequence is:
 
 1. `python -m pip install -r requirements.txt`
-2. `python python\01_prepare_enso_data.py`
-3. `python python\02_analyse_el_nino.py`
+2. `python python_prepare_enso_data.py`
+3. `python python_analyse_el_nino.py`
+
+The preparation script downloads the current NOAA pages, so running it at a later date is a **refresh of the analysis**, not an exact replay of the 4 September inputs. The archived HTML snapshots and checksums in `data/raw` preserve the exact source state used for publication.
 
 The analysis script contains validation gates for the central published findings. If NOAA later revises the current RONI values sufficiently to change those findings, the script stops rather than silently reproducing stale conclusions.
 
